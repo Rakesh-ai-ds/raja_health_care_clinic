@@ -51,7 +51,8 @@ app.use((req, res, next) => {
   next();
 });
 
-(async () => {
+// Initialize and register routes
+const startServer = async () => {
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -59,15 +60,14 @@ app.use((req, res, next) => {
     const message = err.message || "Internal Server Error";
 
     res.status(status).json({ message });
-    throw err;
+    if (app.get("env") === "development") throw err;
   });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
   if (app.get("env") === "development") {
     await setupVite(app, server);
-  } else {
+  } else if (!process.env.VERCEL) {
+    // Only serve static files via Express if NOT on Vercel
+    // Vercel handles static files via the "dist" output folder automatically
     serveStatic(app);
   }
 
@@ -81,4 +81,8 @@ app.use((req, res, next) => {
       log(`serving on port ${port}`);
     });
   }
-})();
+};
+
+startServer().catch(err => {
+  console.error("Failed to start server:", err);
+});
