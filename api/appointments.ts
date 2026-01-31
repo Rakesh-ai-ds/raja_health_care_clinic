@@ -45,7 +45,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // IMPORTANT: When using onboarding@resend.dev, you can ONLY send to the email 
     // that was used to register the Resend account
-    const recipientEmail = "rajahealthcaraclinic@gmail.com";
+    const recipientEmail = "rajahealthcareclinic@gmail.com";
 
     console.log("[appointments] Sending email...");
     console.log("[appointments] From: onboarding@resend.dev");
