@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { contactSchema } from "../shared/schema.ts";
+import { contactSchema } from "../shared/schema";
 import { z } from "zod";
 
 export default async function handler(req: any, res: any) {
