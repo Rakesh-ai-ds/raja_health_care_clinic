@@ -153,6 +153,7 @@ export default function BookAppointment() {
                         </Label>
                         <Input
                           id="fullName"
+                          autoComplete="name"
                           placeholder="Enter your full name"
                           {...form.register("fullName")}
                           data-testid="input-fullname"
@@ -169,6 +170,7 @@ export default function BookAppointment() {
                         <Input
                           id="email"
                           type="email"
+                          autoComplete="email"
                           placeholder="your.email@example.com"
                           {...form.register("email")}
                           data-testid="input-email"
@@ -185,6 +187,7 @@ export default function BookAppointment() {
                         <Input
                           id="phone"
                           type="tel"
+                          autoComplete="tel"
                           placeholder="+91 98765 43210"
                           {...form.register("phone")}
                           data-testid="input-phone"
@@ -228,8 +231,8 @@ export default function BookAppointment() {
                           name="preferredTime"
                           control={form.control}
                           render={({ field }) => (
-                            <Select onValueChange={field.onChange} value={field.value}>
-                              <SelectTrigger className="w-full" data-testid="select-time">
+                            <Select onValueChange={field.onChange} value={field.value} name="preferredTime">
+                              <SelectTrigger id="preferredTime" className="w-full" data-testid="select-time">
                                 <div className="flex items-center gap-2">
                                   <Clock className="w-4 h-4 text-muted-foreground" />
                                   <SelectValue placeholder="Select preferred time" />
@@ -256,8 +259,8 @@ export default function BookAppointment() {
                           name="service"
                           control={form.control}
                           render={({ field }) => (
-                            <Select onValueChange={field.onChange} value={field.value}>
-                              <SelectTrigger className="w-full" data-testid="select-service">
+                            <Select onValueChange={field.onChange} value={field.value} name="service">
+                              <SelectTrigger id="service" className="w-full" data-testid="select-service">
                                 <SelectValue placeholder="Select a service" />
                               </SelectTrigger>
                               <SelectContent>
