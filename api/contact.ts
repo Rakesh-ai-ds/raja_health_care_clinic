@@ -4,35 +4,35 @@ import { z } from "zod";
 
 // Inline schema
 const contactSchema = z.object({
-    name: z.string().min(2),
-    email: z.string().email(),
-    phone: z.string().min(10),
-    subject: z.string().min(3),
-    message: z.string().min(10),
+  name: z.string().min(2),
+  email: z.string().email(),
+  phone: z.string().min(10),
+  subject: z.string().min(3),
+  message: z.string().min(10),
 });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-    console.log("[contact] Handler invoked, method:", req.method);
+  console.log("[contact] Handler invoked, method:", req.method);
 
-    if (req.method !== "POST") {
-        res.setHeader("Allow", "POST");
-        return res.status(405).json({ success: false, error: "Method Not Allowed" });
+  if (req.method !== "POST") {
+    res.setHeader("Allow", "POST");
+    return res.status(405).json({ success: false, error: "Method Not Allowed" });
+  }
+
+  try {
+    const body = req.body;
+    const contactData = contactSchema.parse(body);
+
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error("[contact] RESEND_API_KEY is missing!");
+      return res.status(500).json({ success: false, error: "Email service not configured" });
     }
 
-    try {
-        const body = req.body;
-        const contactData = contactSchema.parse(body);
+    const resend = new Resend(apiKey);
+    const recipientEmail = "rajahealthcareclinic@gmail.com";
 
-        const apiKey = process.env.RESEND_API_KEY;
-        if (!apiKey) {
-            console.error("[contact] RESEND_API_KEY is missing!");
-            return res.status(500).json({ success: false, error: "Email service not configured" });
-        }
-
-        const resend = new Resend(apiKey);
-        const recipientEmail = "rajahealthcareclinic@gmail.com";
-
-        const emailHtml = `
+    const emailHtml = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -161,26 +161,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 </html>
     `;
 
-        const { data, error } = await resend.emails.send({
-            from: "onboarding@resend.dev",
-            to: recipientEmail,
-            subject: `Contact Form: ${contactData.subject}`,
-            html: emailHtml,
-        });
+    const { data, error } = await resend.emails.send({
+      from: "RAJA Health Care Clinic <onboarding@resend.dev>",
+      to: recipientEmail,
+      subject: `Contact Form: ${contactData.subject}`,
+      html: emailHtml,
+    });
 
-        if (error) {
-            console.error("[contact] Resend Error:", JSON.stringify(error));
-            return res.status(500).json({
-                success: false,
-                error: "Failed to send email",
-                details: error
-            });
-        }
-
-        console.log("[contact] Email sent successfully, ID:", data?.id);
-        return res.status(200).json({ success: true, message: "Sent successfully", id: data?.id });
-    } catch (err: any) {
-        console.error("[contact] Handler Error:", err?.message || err);
-        return res.status(500).json({ success: false, error: err?.message || "Internal Error" });
+    if (error) {
+      console.error("[contact] Resend Error:", JSON.stringify(error));
+      return res.status(500).json({
+        success: false,
+        error: "Failed to send email",
+        details: error
+      });
     }
+
+    console.log("[contact] Email sent successfully, ID:", data?.id);
+    return res.status(200).json({ success: true, message: "Sent successfully", id: data?.id });
+  } catch (err: any) {
+    console.error("[contact] Handler Error:", err?.message || err);
+    return res.status(500).json({ success: false, error: err?.message || "Internal Error" });
+  }
 }

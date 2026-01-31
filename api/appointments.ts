@@ -230,7 +230,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "RAJA Health Care Clinic <onboarding@resend.dev>",
       to: recipientEmail,
       subject: `New Appointment: ${appointmentData.fullName} - ${serviceName}`,
       html: emailHtml,
