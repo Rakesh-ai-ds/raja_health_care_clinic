@@ -24,7 +24,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(500).json({ success: false, error: "Email service not configured" });
       }
       const resend = new Resend(process.env.RESEND_API_KEY);
-      const notifyTo = process.env.NOTIFY_TO || "info@rajahealthcare.com";
+      const notifyTo = process.env.NOTIFY_TO || "rajahealthcaraclinic@gmail.com";
 
       // Send email using Resend
       const { data, error } = await resend.emails.send({
@@ -139,7 +139,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(500).json({ success: false, error: "Email service not configured" });
       }
       const resend = new Resend(process.env.RESEND_API_KEY);
-      const notifyTo = process.env.NOTIFY_TO || "info@rajahealthcare.com";
+      const notifyTo = process.env.NOTIFY_TO || "rajahealthcaraclinic@gmail.com";
 
       // Send email using Resend
       const { data, error } = await resend.emails.send({
