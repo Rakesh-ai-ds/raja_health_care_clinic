@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from "resend";
 import { z } from "zod";
 
-// Inline schema to avoid cross-directory import issues on Vercel
+// Inline schema
 const appointmentSchema = z.object({
   fullName: z.string().min(2),
   email: z.string().email(),
@@ -23,9 +23,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     const body = req.body;
-    console.log("[appointments] Request body:", JSON.stringify(body));
+    console.log("[appointments] Parsing body...");
 
     const appointmentData = appointmentSchema.parse(body);
+    console.log("[appointments] Data parsed successfully for:", appointmentData.fullName);
 
     const timeSlotMap: Record<string, string> = {
       morning: "Morning (9:00 AM - 12:00 PM)",
@@ -41,32 +42,38 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const resend = new Resend(apiKey);
-    const notifyTo = process.env.NOTIFY_TO || "rajahealthcaraclinic@gmail.com";
 
-    console.log("[appointments] Sending email to:", notifyTo);
+    // IMPORTANT: When using onboarding@resend.dev, you can ONLY send to the email 
+    // that was used to register the Resend account
+    const recipientEmail = "rajahealthcaraclinic@gmail.com";
+
+    console.log("[appointments] Sending email...");
+    console.log("[appointments] From: onboarding@resend.dev");
+    console.log("[appointments] To:", recipientEmail);
 
     const { data, error } = await resend.emails.send({
-      from: "RAJA Health Care <onboarding@resend.dev>",
-      to: [notifyTo],
-      replyTo: appointmentData.email,
-      subject: `New Appointment Request from ${appointmentData.fullName}`,
+      from: "onboarding@resend.dev",
+      to: recipientEmail,
+      subject: `New Appointment: ${appointmentData.fullName}`,
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #3b82f6;">New Appointment Request</h2>
-          <p><strong>Name:</strong> ${appointmentData.fullName}</p>
-          <p><strong>Email:</strong> ${appointmentData.email}</p>
-          <p><strong>Phone:</strong> ${appointmentData.phone}</p>
-          <p><strong>Date:</strong> ${appointmentData.preferredDate}</p>
-          <p><strong>Time:</strong> ${timeSlot}</p>
-          <p><strong>Service:</strong> ${appointmentData.service}</p>
-          ${appointmentData.reason ? `<p><strong>Reason:</strong> ${appointmentData.reason}</p>` : ''}
-        </div>
+        <h2>New Appointment Request</h2>
+        <p><strong>Name:</strong> ${appointmentData.fullName}</p>
+        <p><strong>Email:</strong> ${appointmentData.email}</p>
+        <p><strong>Phone:</strong> ${appointmentData.phone}</p>
+        <p><strong>Date:</strong> ${appointmentData.preferredDate}</p>
+        <p><strong>Time:</strong> ${timeSlot}</p>
+        <p><strong>Service:</strong> ${appointmentData.service}</p>
+        ${appointmentData.reason ? `<p><strong>Reason:</strong> ${appointmentData.reason}</p>` : ''}
       `,
     });
 
     if (error) {
       console.error("[appointments] Resend Error:", JSON.stringify(error));
-      return res.status(500).json({ success: false, error: "Failed to send email", details: error });
+      return res.status(500).json({
+        success: false,
+        error: "Failed to send email",
+        details: error
+      });
     }
 
     console.log("[appointments] Email sent successfully, ID:", data?.id);

@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from "resend";
 import { z } from "zod";
 
-// Inline schema to avoid cross-directory import issues on Vercel
+// Inline schema
 const contactSchema = z.object({
     name: z.string().min(2),
     email: z.string().email(),
@@ -21,9 +21,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     try {
         const body = req.body;
-        console.log("[contact] Request body:", JSON.stringify(body));
+        console.log("[contact] Parsing body...");
 
         const contactData = contactSchema.parse(body);
+        console.log("[contact] Data parsed successfully for:", contactData.name);
 
         const apiKey = process.env.RESEND_API_KEY;
         if (!apiKey) {
@@ -32,31 +33,37 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         }
 
         const resend = new Resend(apiKey);
-        const notifyTo = process.env.NOTIFY_TO || "rajahealthcaraclinic@gmail.com";
 
-        console.log("[contact] Sending email to:", notifyTo);
+        // IMPORTANT: When using onboarding@resend.dev, you can ONLY send to the email 
+        // that was used to register the Resend account
+        const recipientEmail = "rajahealthcaraclinic@gmail.com";
+
+        console.log("[contact] Sending email...");
+        console.log("[contact] From: onboarding@resend.dev");
+        console.log("[contact] To:", recipientEmail);
 
         const { data, error } = await resend.emails.send({
-            from: "RAJA Health Care <onboarding@resend.dev>",
-            to: [notifyTo],
-            replyTo: contactData.email,
-            subject: `Contact Form: ${contactData.subject}`,
+            from: "onboarding@resend.dev",
+            to: recipientEmail,
+            subject: `Contact: ${contactData.subject}`,
             html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #3b82f6;">New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${contactData.name}</p>
-          <p><strong>Email:</strong> ${contactData.email}</p>
-          <p><strong>Phone:</strong> ${contactData.phone}</p>
-          <p><strong>Subject:</strong> ${contactData.subject}</p>
-          <p><strong>Message:</strong></p>
-          <p>${contactData.message}</p>
-        </div>
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${contactData.name}</p>
+        <p><strong>Email:</strong> ${contactData.email}</p>
+        <p><strong>Phone:</strong> ${contactData.phone}</p>
+        <p><strong>Subject:</strong> ${contactData.subject}</p>
+        <p><strong>Message:</strong></p>
+        <p>${contactData.message}</p>
       `,
         });
 
         if (error) {
             console.error("[contact] Resend Error:", JSON.stringify(error));
-            return res.status(500).json({ success: false, error: "Failed to send email", details: error });
+            return res.status(500).json({
+                success: false,
+                error: "Failed to send email",
+                details: error
+            });
         }
 
         console.log("[contact] Email sent successfully, ID:", data?.id);
