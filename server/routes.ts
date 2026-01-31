@@ -98,10 +98,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       if (error) {
-        console.error("Resend error:", error);
+        console.error("Resend Appointment Error:", {
+          message: error.message,
+          name: error.name
+        });
         return res.status(500).json({
           success: false,
-          error: "Failed to send appointment request"
+          error: `Failed to send appointment request: ${error.message || 'Unknown error'}`
         });
       }
 
@@ -192,10 +195,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       if (error) {
-        console.error("Resend error:", error);
+        console.error("Resend Contact Error:", {
+          message: error.message,
+          name: error.name
+        });
         return res.status(500).json({
           success: false,
-          error: "Failed to send contact message"
+          error: `Failed to send contact message: ${error.message || 'Unknown error'}`
         });
       }
 
