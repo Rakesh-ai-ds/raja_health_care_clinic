@@ -84,7 +84,9 @@ export default function Services() {
       description: "Physiotherapy for the geriatric population to improve the quality of life.",
       points: [
         "Our Geriatric physiotherapists utilize a holistic approach, combining exercises, manual therapy, and other therapeutic techniques to address age-related conditions.",
-        "Treatment plans are tailored to individual needs to help adults regain and maintain their physical abilities."
+        "Treatment plans are tailored to individual needs to help adults regain and maintain their physical abilities.",
+        "Parkinson's Disease",
+        "Alzheimer's Disease"
       ],
       id: "geriatric"
     },
