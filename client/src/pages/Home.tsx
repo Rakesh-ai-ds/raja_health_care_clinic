@@ -101,17 +101,17 @@ export default function Home() {
 
   const testimonials = [
     {
-      name: "Priya Sharma",
+      name: "Priya Selvi",
       rating: 5,
-      text: "Dr. Raja's expertise and compassionate care helped me manage my migraines effectively. Highly recommended!",
+      text: "Dr. Raja's expertise and compassionate care helped me manage my pain effectively. Highly recommended!",
     },
     {
-      name: "Rajesh Kumar",
+      name: "Rajesh Kannan",
       rating: 5,
       text: "The clinic staff is professional and caring. Dr. Raja took time to explain my condition thoroughly.",
     },
     {
-      name: "Anita Reddy",
+      name: "Anitha Devi",
       rating: 5,
       text: "Excellent treatment for my father's stroke recovery. The follow-up care has been exceptional.",
     },
