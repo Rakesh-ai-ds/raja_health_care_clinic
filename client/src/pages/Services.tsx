@@ -118,7 +118,10 @@ export default function Services() {
         "Cerebral Palsy",
         "Muscular Dystrophy",
         "Autism",
-        "Developmental delays"
+        "Developmental delays",
+        "Down syndrome",
+        "Muscular atrophy",
+        "Hydrocephalus"
       ],
       id: "pediatrics"
     },
