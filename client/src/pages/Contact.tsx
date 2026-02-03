@@ -63,7 +63,7 @@ export default function ContactPage() {
     {
       icon: MapPin,
       label: "Address",
-      value: ["Head Branch: Nalam Hospital Opp,", "Arisipalayam, 4 roads,", "Salem - 636002, 636009"],
+      value: ["Head Branch: Nalam Hospital Opp,", "Arisipalayam, 4 roads,", "Salem - 636009"],
       link: "https://www.google.com/maps/search/?api=1&query=RAJA+Health+Care+Clinic+Arisipalayam+Salem",
     },
     {

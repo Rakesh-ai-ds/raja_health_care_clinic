@@ -470,8 +470,8 @@ export default function Home() {
                   key={index}
                   onClick={() => setCurrentIndex(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
-                      ? 'bg-primary w-8'
-                      : 'bg-primary/30 hover:bg-primary/50'
+                    ? 'bg-primary w-8'
+                    : 'bg-primary/30 hover:bg-primary/50'
                     }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
@@ -512,7 +512,7 @@ export default function Home() {
 
           <div className="text-center mt-8">
             <p className="text-muted-foreground">
-              <strong>Main Areas:</strong> Salem - 636002, 636009
+              <strong>Main Areas:</strong> Salem - 636009
             </p>
           </div>
         </div>
