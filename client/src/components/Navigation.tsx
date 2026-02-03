@@ -23,8 +23,10 @@ export function Navigation() {
           <div className="flex items-center gap-3 hover-elevate active-elevate-2 transition-all duration-300 px-3 py-2 rounded-lg cursor-pointer">
             <img src={logoImage} alt="Raja Health Care Logo" className="w-10 h-10 rounded-full object-cover" />
             <div className="hidden sm:block">
-              <div className="font-serif font-bold text-lg leading-none">Raja Health Care</div>
-              <div className="text-xs text-muted-foreground">Physiotherapy Clinic</div>
+              <div className="text-xl font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <span className="text-primary">Raja</span> Health Care Clinic
+              </div>
+              <div className="text-xs text-muted-foreground font-medium tracking-wide">Physiotherapy & Rehabilitation</div>
             </div>
           </div>
         </Link>
