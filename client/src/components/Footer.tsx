@@ -30,9 +30,9 @@ export function Footer() {
           {/* Column 1: Clinic Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img src={logoImage} alt="RAJA Health Care Logo" className="w-10 h-10 rounded-full object-cover" />
+              <img src={logoImage} alt="Raja Health Care Logo" className="w-10 h-10 rounded-full object-cover" />
               <div>
-                <div className="font-serif font-bold text-lg leading-none">RAJA Health Care</div>
+                <div className="font-serif font-bold text-lg leading-none">Raja Health Care</div>
                 <div className="text-xs text-muted-foreground">Physiotherapy Clinic</div>
               </div>
             </div>
@@ -121,7 +121,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t text-center md:text-left">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © {currentYear} RAJA Health Care Clinic. All rights reserved.
+              © {currentYear} Raja Health Care Clinic. All rights reserved.
             </p>
           </div>
         </div>

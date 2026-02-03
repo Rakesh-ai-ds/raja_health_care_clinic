@@ -128,7 +128,7 @@ export default function Home() {
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
               <img
                 src={logoImage}
-                alt="RAJA Health Care Logo"
+                alt="Raja Health Care Logo"
                 className="relative w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-2xl border-4 border-background"
                 data-testid="img-logo-hero"
               />
@@ -338,7 +338,7 @@ export default function Home() {
       <section className="py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-serif">Why Choose RAJA Health Care</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-serif">Why Choose Raja Health Care</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">

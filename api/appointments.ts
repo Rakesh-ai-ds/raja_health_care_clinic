@@ -78,7 +78,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           <tr>
             <td style="background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); padding: 30px 40px; text-align: center;">
               <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 600; letter-spacing: 0.5px;">
-                RAJA Health Care
+                Raja Health Care
               </h1>
               <p style="color: #a8c5e2; margin: 8px 0 0 0; font-size: 14px; letter-spacing: 1px;">
                 PHYSIOTHERAPY CLINIC
@@ -213,7 +213,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           <tr>
             <td style="background-color: #1e3a5f; padding: 25px 40px; text-align: center;">
               <p style="color: #a8c5e2; font-size: 13px; margin: 0 0 10px 0;">
-                RAJA Health Care Physiotherapy Clinic
+                Raja Health Care Physiotherapy Clinic
               </p>
               <p style="color: #6b8cae; font-size: 12px; margin: 0;">
                 Phone: +91 76959 91173
@@ -230,7 +230,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: "RAJA Health Care Clinic <onboarding@resend.dev>",
+      from: "Raja Health Care Clinic <onboarding@resend.dev>",
       to: recipientEmail,
       subject: `New Appointment: ${appointmentData.fullName} - ${serviceName}`,
       html: emailHtml,

@@ -40,7 +40,7 @@ export default function About() {
       <section className="py-20 md:py-24 bg-gradient-to-br from-accent/30 to-background">
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold font-serif" data-testid="text-about-title">
-            About RAJA Health Care Clinic
+            About Raja Health Care Clinic
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             A dedicated health care center committed to providing exceptional, compassionate care
@@ -240,7 +240,7 @@ export default function About() {
             Our Patient-Centered Approach
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            At RAJA Health Care Clinic, we believe that effective health care requires a
+            At Raja Health Care Clinic, we believe that effective health care requires a
             collaborative approach. We work closely with each patient to understand their unique
             needs and concerns, developing personalized treatment plans that address not just the
             symptoms, but the whole person.

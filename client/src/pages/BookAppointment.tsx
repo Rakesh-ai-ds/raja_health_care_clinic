@@ -95,7 +95,7 @@ export default function BookAppointment() {
                       Appointment Request Received!
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                      Thank you for choosing RAJA Health Care Clinic.
+                      Thank you for choosing Raja Health Care Clinic.
                     </p>
                   </div>
                   <div className="bg-accent/50 rounded-lg p-6 space-y-3 text-left">

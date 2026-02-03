@@ -21,9 +21,9 @@ export function Navigation() {
       <nav className="max-w-7xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
         <Link href="/" data-testid="link-home">
           <div className="flex items-center gap-3 hover-elevate active-elevate-2 transition-all duration-300 px-3 py-2 rounded-lg cursor-pointer">
-            <img src={logoImage} alt="RAJA Health Care Logo" className="w-10 h-10 rounded-full object-cover" />
+            <img src={logoImage} alt="Raja Health Care Logo" className="w-10 h-10 rounded-full object-cover" />
             <div className="hidden sm:block">
-              <div className="font-serif font-bold text-lg leading-none">RAJA Health Care</div>
+              <div className="font-serif font-bold text-lg leading-none">Raja Health Care</div>
               <div className="text-xs text-muted-foreground">Physiotherapy Clinic</div>
             </div>
           </div>

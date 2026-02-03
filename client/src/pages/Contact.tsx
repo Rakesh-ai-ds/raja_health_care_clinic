@@ -354,7 +354,7 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">Find Us on the Map</h3>
                 <p className="text-muted-foreground mb-2">
-                  RAJA Health Care Clinic, Arisipalayam, Salem, Tamil Nadu
+                  Raja Health Care Clinic, Arisipalayam, Salem, Tamil Nadu
                 </p>
                 <p className="text-sm text-primary font-medium">Click to open Google Maps</p>
               </a>
