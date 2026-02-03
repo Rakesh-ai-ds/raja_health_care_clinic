@@ -17,7 +17,8 @@ import {
   Clock,
   Star,
   ArrowRight,
-  Phone
+  Phone,
+  MapPin
 } from "lucide-react";
 import logoImage from "@/assets/logo.jpg";
 import doctorImage from "@/assets/doctor.jpg";
@@ -432,6 +433,43 @@ export default function Home() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Branches */}
+      <section className="py-20 md:py-24 bg-accent/20">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold font-serif">Our Branches</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Serving you across multiple locations in Salem and surrounding areas
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            {[
+              "Mullvadigate",
+              "Mallur",
+              "Sithanur",
+              "Gorimedu",
+              "Ammapet",
+              "Rasipuram",
+              "Seelanaickenpatti"
+            ].map((branch) => (
+              <Card key={branch} className="hover-elevate transition-all duration-300">
+                <CardContent className="p-4 text-center">
+                  <MapPin className="w-6 h-6 text-primary mx-auto mb-2" />
+                  <div className="font-medium text-sm">{branch}</div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <p className="text-muted-foreground">
+              <strong>Main Areas:</strong> Salem - 636002, 636009
+            </p>
           </div>
         </div>
       </section>

@@ -86,7 +86,7 @@ export function Footer() {
                 <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
                 <div className="text-sm text-muted-foreground group-hover:text-primary transition-colors">
                   <div>Nalam Hospital Opp, Arisipalayam,</div>
-                  <div>4 roads, Salem - 636002</div>
+                  <div>4 roads, Salem - 636002, 636009</div>
                 </div>
               </a>
               <div className="flex gap-3">
