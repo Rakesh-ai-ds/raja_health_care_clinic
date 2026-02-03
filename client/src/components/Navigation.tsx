@@ -1,12 +1,13 @@
 import { Link, useLocation } from "wouter";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import logoImage from "@/assets/logo.jpg";
 
 export function Navigation() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -16,10 +17,35 @@ export function Navigation() {
     { path: "/contact", label: "Contact" },
   ];
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside as any);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside as any);
+    };
+  }, [mobileMenuOpen]);
+
+  // Scroll to top when navigating
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b" ref={menuRef}>
       <nav className="max-w-7xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
-        <Link href="/" data-testid="link-home">
+        <Link href="/" data-testid="link-home" onClick={handleNavClick}>
           <div className="flex items-center gap-3 hover-elevate active-elevate-2 transition-all duration-300 px-3 py-2 rounded-lg cursor-pointer">
             <img src={logoImage} alt="Raja Health Care Logo" className="w-10 h-10 rounded-full object-cover" />
             <div className="text-lg sm:text-xl font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
@@ -31,7 +57,7 @@ export function Navigation() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
-            <Link key={item.path} href={item.path} data-testid={`link-${item.label.toLowerCase().replace(/\s+/g, '-')}`}>
+            <Link key={item.path} href={item.path} data-testid={`link-${item.label.toLowerCase().replace(/\s+/g, '-')}`} onClick={handleNavClick}>
               <button
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover-elevate active-elevate-2 ${location === item.path
                   ? "text-primary"
@@ -50,7 +76,7 @@ export function Navigation() {
             <Phone className="w-4 h-4" />
             <span className="font-medium">+91 76959 91173</span>
           </a>
-          <Link href="/book-appointment" data-testid="link-book-cta">
+          <Link href="/book-appointment" data-testid="link-book-cta" onClick={handleNavClick}>
             <Button className="shadow-md">Book Appointment</Button>
           </Link>
         </div>
@@ -71,9 +97,8 @@ export function Navigation() {
         <div className="lg:hidden border-t bg-background">
           <div className="max-w-7xl mx-auto px-6 py-6 space-y-1">
             {navItems.map((item) => (
-              <Link key={item.path} href={item.path} data-testid={`link-mobile-${item.label.toLowerCase().replace(/\s+/g, '-')}`}>
+              <Link key={item.path} href={item.path} data-testid={`link-mobile-${item.label.toLowerCase().replace(/\s+/g, '-')}`} onClick={handleNavClick}>
                 <button
-                  onClick={() => setMobileMenuOpen(false)}
                   className={`w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 hover-elevate active-elevate-2 ${location === item.path
                     ? "text-primary bg-accent"
                     : "text-foreground"
@@ -88,8 +113,8 @@ export function Navigation() {
                 <Phone className="w-4 h-4" />
                 <span className="font-medium">+91 76959 91173</span>
               </a>
-              <Link href="/book-appointment" data-testid="link-mobile-book">
-                <Button className="w-full" onClick={() => setMobileMenuOpen(false)}>
+              <Link href="/book-appointment" data-testid="link-mobile-book" onClick={handleNavClick}>
+                <Button className="w-full">
                   Book Appointment
                 </Button>
               </Link>
