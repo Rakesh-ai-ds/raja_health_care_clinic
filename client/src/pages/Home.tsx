@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -116,7 +117,27 @@ export default function Home() {
       rating: 5,
       text: "Excellent treatment for my father's stroke recovery. The follow-up care has been exceptional.",
     },
+    {
+      name: "Murugan S.",
+      rating: 5,
+      text: "Best physiotherapy clinic in Salem. My back pain is completely gone after just 2 weeks of treatment!",
+    },
+    {
+      name: "Lakshmi P.",
+      rating: 5,
+      text: "Very professional service. Dr. Raja is very knowledgeable and explains everything clearly.",
+    },
   ];
+
+  // Auto-cycling testimonial carousel
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 4000); // Change every 4 seconds
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
   return (
     <div className="min-h-screen">
@@ -407,32 +428,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Patient Testimonials */}
-      <section className="py-20 md:py-24">
+      {/* Patient Testimonials - Auto-Cycling Carousel */}
+      <section className="py-20 md:py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-serif">What Our Patients Say</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-serif animate-fade-in">What Our Patients Say</h2>
             <p className="text-lg text-muted-foreground">Trusted by thousands of patients</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover-elevate transition-all duration-300" data-testid={`card-testimonial-${index}`}>
-                <CardContent className="p-8 space-y-4">
-                  <div className="flex gap-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-primary text-primary" />
-                    ))}
-                  </div>
-                  <p className="text-base text-muted-foreground leading-relaxed italic">
-                    "{testimonial.text}"
-                  </p>
-                  <div className="pt-4 border-t">
-                    <div className="font-semibold">{testimonial.name}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          {/* Carousel Container */}
+          <div className="relative">
+            {/* Sliding Testimonials */}
+            <div className="flex transition-transform duration-700 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="w-full flex-shrink-0 px-4">
+                  <Card className="max-w-2xl mx-auto shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <CardContent className="p-8 md:p-12 space-y-6 text-center">
+                      <div className="flex justify-center gap-1">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+                        ))}
+                      </div>
+                      <p className="text-xl md:text-2xl text-foreground leading-relaxed italic font-medium">
+                        "{testimonial.text}"
+                      </p>
+                      <div className="pt-4">
+                        <div className="font-bold text-lg text-primary">{testimonial.name}</div>
+                        <div className="text-sm text-muted-foreground">Verified Patient</div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </div>
+
+            {/* Carousel Indicators */}
+            <div className="flex justify-center gap-2 mt-8">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
+                      ? 'bg-primary w-8'
+                      : 'bg-primary/30 hover:bg-primary/50'
+                    }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
