@@ -94,7 +94,9 @@ export default function Services() {
       description: "Dedicated care for women through different life stages.",
       points: [
         "Pelvic Floor Rehabilitation",
-        "Antenatal and postnatal exercise program"
+        "Antenatal and postnatal exercise program",
+        "Urinary Incontinence",
+        "Dysmenorrhea"
       ],
       id: "womens-health"
     },
