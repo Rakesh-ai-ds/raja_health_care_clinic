@@ -163,7 +163,7 @@ export default function Home() {
                     Home Visits Available
                   </Badge>
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif leading-tight" data-testid="text-hero-headline">
-                    Leading Health Care in Salem
+                    Specialized Physiotherapy Excellence
                   </h1>
                 </div>
                 <p className="text-xl md:text-2xl text-muted-foreground">
