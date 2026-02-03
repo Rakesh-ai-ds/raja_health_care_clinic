@@ -90,7 +90,7 @@ export default function Home() {
     },
     {
       title: "Evidence based treatment approach",
-      description: "By utilizing a comprehensive range of evidence-based techniques and modern equipment,",
+      description: "By utilizing a comprehensive range of evidence-based techniques and modern equipment",
       icon: Activity,
     },
     {
