@@ -331,7 +331,7 @@ export default function Home() {
                     </Link>
                     <Link href="/contact">
                       <Button size="lg" variant="outline" className="text-white border-white/30 hover:bg-white/10 w-full sm:w-auto">
-                        Inquire Now
+                        Enquire Now
                       </Button>
                     </Link>
                   </div>
