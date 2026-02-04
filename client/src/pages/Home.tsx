@@ -52,7 +52,7 @@ export default function Home() {
       id: "cardiac"
     },
     {
-      title: "Sports Injury Rehab",
+      title: "Sports Injury Rehabilitation",
       description: "Injury prevention exercises",
       icon: Move,
       id: "sports"

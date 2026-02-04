@@ -66,7 +66,7 @@ export default function Services() {
     },
     {
       icon: Move,
-      title: "Sports Injury Rehab",
+      title: "Sports Injury Rehabilitation",
       description: "Advanced recovery programs for athletes to ensure safe return to performance.",
       points: [
         "Throwing Injuries (Shoulder & Elbow)",

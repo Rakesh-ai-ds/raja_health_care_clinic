@@ -18,7 +18,7 @@ export function Footer() {
     "Orthopedic Physiotherapy",
     "Neurological Physiotherapy",
     "Cardio pulmonary rehabilitation",
-    "Sports Injury Rehab",
+    "Sports Injury Rehabilitation",
     "Women's Health",
     "Pain Management",
   ];
