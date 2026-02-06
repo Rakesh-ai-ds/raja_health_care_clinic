@@ -197,14 +197,14 @@ export default function Home() {
       {/* Quick Stats */}
       <section className="py-12 md:py-16 bg-card">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
                 <Card key={index} className="hover-elevate transition-all duration-300" data-testid={`card-stat-${index}`}>
-                  <CardContent className="p-8 text-center space-y-2">
+                  <CardContent className="p-6 md:p-8 text-center space-y-2 flex flex-col items-center justify-center h-full">
                     <Icon className="w-8 h-8 mx-auto text-primary mb-3" />
-                    <div className="text-4xl md:text-5xl font-bold text-primary" data-testid={`text-stat-number-${index}`}>
+                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary break-words w-full" data-testid={`text-stat-number-${index}`}>
                       {stat.number}
                     </div>
                     <div className="text-sm md:text-base uppercase tracking-wide text-muted-foreground font-medium">
