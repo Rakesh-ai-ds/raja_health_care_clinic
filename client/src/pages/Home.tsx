@@ -26,10 +26,9 @@ import doctorImage from "@/assets/doctor.jpg";
 
 export default function Home() {
   const stats = [
-    { number: "5+", label: "Years Experience", icon: Award },
-    { number: "1000+", label: "Patients Treated", icon: Users },
-    { number: "10+", label: "Specialized Services", icon: Activity },
-    { number: "4.9/5", label: "Patient Rating", icon: Star },
+    { number: "100000+", label: "Patients Treated", icon: Users },
+    { number: "100%", label: "Patient Satisfaction", icon: Star },
+    { number: "24/7", label: "Emergency Support", icon: Clock },
   ];
 
   const services = [

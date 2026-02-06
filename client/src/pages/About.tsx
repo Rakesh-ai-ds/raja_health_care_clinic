@@ -26,14 +26,6 @@ export default function About() {
     },
   ];
 
-  const milestones = [
-    { year: "2021", event: "Clinic Established in Arisipalayam, Salem" },
-    { year: "2022", event: "Expanded with Evidence-Based Treatment Protocols" },
-    { year: "2023", event: "Reached 500+ Patients Treated" },
-    { year: "2024", event: "Reached 1000+ Patients Treated & Advanced Services" },
-    { year: "2025", event: "Celebrated 5 Years of Clinical Excellence" },
-  ];
-
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
@@ -174,63 +166,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Timeline/Milestones */}
-      <section className="py-24 md:py-32 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="text-center space-y-4 mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold font-serif">Our Journey</h2>
-            <div className="w-24 h-1 bg-primary/20 mx-auto"></div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto italic">
-              A commitment to excellence, one patient at a time.
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Centered Line - Hidden on small screens, absolute on larger */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-primary/30 to-transparent -translate-x-1/2 rounded-full"></div>
-
-            <div className="space-y-12 md:space-y-24">
-              {milestones.map((milestone, index) => (
-                <div
-                  key={index}
-                  className={`flex flex-col md:flex-row items-center gap-8 md:gap-0 ${index % 2 === 0 ? "md:flex-row-reverse" : ""
-                    }`}
-                  data-testid={`milestone-${index}`}
-                >
-                  {/* Content Card Area */}
-                  <div className="w-full md:w-1/2 flex justify-center px-0 md:px-12">
-                    <Card className="w-full hover-elevate transition-all duration-500 border-primary/5 hover:border-primary/20 group overflow-hidden bg-card/50 backdrop-blur-sm">
-                      <CardContent className="p-8 space-y-4 relative">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full translate-x-1/2 -translate-y-1/2 group-hover:bg-primary/10 transition-colors"></div>
-                        <div className="md:hidden text-3xl font-bold text-primary mb-2">{milestone.year}</div>
-                        <p className="text-lg font-medium leading-relaxed relative z-10">{milestone.event}</p>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* Year Marker Area */}
-                  <div className="relative flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-background border-4 border-primary/10 flex items-center justify-center shadow-xl z-10 hover:border-primary/40 transition-colors duration-500">
-                      <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm shadow-lg">
-                        <span className="md:hidden">✓</span>
-                        <div className="hidden md:block">{(index + 1).toString().padStart(2, '0')}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Year Text for alternating layout */}
-                  <div className="hidden md:block w-1/2 px-12">
-                    <div className={`text-6xl font-black opacity-5 font-serif select-none ${index % 2 === 0 ? "text-left" : "text-right"
-                      }`}>
-                      {milestone.year}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Team Approach */}
       <section className="py-20 md:py-24 bg-card">

@@ -44,7 +44,7 @@ export default function Doctor() {
                 </h1>
                 <p className="text-2xl text-primary font-semibold">Chief Medical Officer</p>
                 <p className="text-lg text-muted-foreground">
-                  Distinguished Specialist | 5+ Years Experience
+                  Distinguished Specialist
                 </p>
               </div>
 
