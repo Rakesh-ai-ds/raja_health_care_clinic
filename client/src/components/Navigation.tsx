@@ -48,7 +48,7 @@ export function Navigation() {
         <Link href="/" data-testid="link-home" onClick={handleNavClick}>
           <div className="flex items-center gap-3 hover-elevate active-elevate-2 transition-all duration-300 px-3 py-2 rounded-lg cursor-pointer">
             <img src={logoImage} alt="Raja Health Care Logo" className="w-10 h-10 rounded-full object-cover" />
-            <div className="text-lg sm:text-xl font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <div className="text-xl sm:text-2xl font-extrabold leading-tight tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
               <span className="text-primary">Raja</span> Health Care Clinic
             </div>
           </div>
