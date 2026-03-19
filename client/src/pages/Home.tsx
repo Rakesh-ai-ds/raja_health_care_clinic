@@ -490,7 +490,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5 gap-6">
             {[
               "Mullvadigate",
               "Mallur",
@@ -500,7 +500,8 @@ export default function Home() {
               "Rasipuram",
               "Seelanaickenpatti",
               "Junction",
-              "Kondalampatti Bypass"
+              "Kondalampatti Bypass",
+              "4 roads"
             ].map((branch) => (
               <Card key={branch} className="hover-elevate transition-all duration-300">
                 <CardContent className="p-4 text-center">
