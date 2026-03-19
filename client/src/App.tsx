@@ -13,6 +13,7 @@ import Contact from "@/pages/Contact";
 import BookAppointment from "@/pages/BookAppointment";
 import NotFound from "@/pages/not-found";
 import { ThemeInitializer } from "@/components/ThemeInitializer";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 function Router() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Footer />
         </div>
         <Toaster />
+        <WhatsAppButton />
       </TooltipProvider>
     </QueryClientProvider>
   );
